@@ -1,4 +1,4 @@
-let api_url = "";
+let api_url = "05c3f7e2.ngrok.io";
 let matchmaking_socket = new ReconnectingWebSocket(api_url + "/ws/matchmaking/");
 let debug_screen = document.getElementById("debug-screen");
 
