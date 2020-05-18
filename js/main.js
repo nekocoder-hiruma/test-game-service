@@ -1,5 +1,4 @@
 let api_url = "wss://05c3f7e2.ngrok.io";
-let matchmaking_socket = new ReconnectingWebSocket(api_url + "/ws/matchmaking/");
 let debug_screen = document.getElementById("debug-screen");
 
 let game_tag = document.getElementById("personal-id");
@@ -8,25 +7,7 @@ game_tag.value = gamer_id;
 
 let room_code;
 
-matchmaking_socket.onopen = function (event) {
-  add_debug_message(gamer_id + " joins matchmaking service!")
-  matchmaking_socket.send(JSON.stringify({
-    "message": gamer_id
-  }))
-}
-
-matchmaking_socket.onmessage = function (event) {
-  let data = JSON.parse(event.data);
-  let message = data["message"];
-  add_debug_message(message);
-  let verify_status = data["status"];
-  if (verify_status){
-    room_code = data["room"];
-    connect(room_code);
-  }else {
-    add_debug_message("Failed to verify!");
-  }
-}
+connect("hydra");
 
 // Add Debug Message
 function add_debug_message(text_message){
