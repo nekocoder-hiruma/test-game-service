@@ -1,4 +1,4 @@
-let api_url = "wss://05c3f7e2.ngrok.io";
+let api_url = "wss://098bf5b1.ngrok.io";
 let debug_screen = document.getElementById("debug-screen");
 
 let game_tag = document.getElementById("personal-id");
