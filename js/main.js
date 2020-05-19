@@ -19,8 +19,11 @@ function add_debug_message(text_message){
 }
 
 function connect(room){
+  console.log("Joining hydra network");
   let game_socket = new ReconnectingWebSocket(api_url + "/ws/game/" + room + "/");
   game_socket.onopen = function (event) {
+    console.log("Network connected");
+    console.log("Sending encrypted message");
     game_socket.send(JSON.stringify({
       "message": "ALL HAIL HYDRA",
       "player": gamer_id
@@ -28,7 +31,9 @@ function connect(room){
   }
 
   game_socket.onmessage = function (event) {
+    console.log("Message recevied");
     let data = JSON.parse(event.data);
+    console.log(data);
     add_debug_message(data["message"]);
     if (data["message"] === "HYDRA"){
       game_socket.send(JSON.stringify({
