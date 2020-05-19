@@ -30,6 +30,12 @@ function connect(room){
   game_socket.onmessage = function (event) {
     let data = JSON.parse(event.data);
     add_debug_message(data["message"]);
+    if (data["message"] === "HYDRA"){
+      game_socket.send(JSON.stringify({
+        "message": "ALL HAIL HYDRA",
+        "player": gamer_id
+      }))
+    }
   }
   game_socket.onerror = function (e) {
     add_debug_message("Error in game socket");
